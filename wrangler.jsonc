@@ -1,0 +1,9 @@
+{
+  // Configuración para desplegar en Cloudflare (ver GUIA.md, parte 5)
+  "name": "cala-memories",
+  "compatibility_date": "2026-11-13",
+  "assets": {
+    "directory": "./dist/",
+    "not_found_handling": "single-page-application"
+  }
+}

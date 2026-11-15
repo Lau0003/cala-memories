@@ -1,0 +1,366 @@
+/* =====================================================================
+   CaLa memories · Estilos base (colores, tipografía, botones, campos)
+   Los colores salen de la hoja de marca. Para cambiarlos, edita solo
+   las variables de :root.
+   ===================================================================== */
+
+:root {
+  /* Marca */
+  --carbon: #1f1f1f;
+  --crema: #f5f1e9;
+  --arena: #c9b8a7;
+
+  /* Derivados */
+  --papel: #fbf9f5; /* superficies sobre crema */
+  --arena-suave: #e6ddd2; /* fondos de fotos y bloques */
+  --arena-fuerte: #9c8672; /* detalles sobre claro */
+  --tinta-suave: #665c53; /* texto secundario */
+  --linea: rgba(31, 31, 31, 0.14);
+  --whatsapp: #25d366;
+  --error: #9b2c1f;
+  --ok: #2f6b3a;
+
+  --fuente-titulos: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+  --fuente-texto: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+
+  --radio-foto: 18px;
+  --radio-caja: 14px;
+  --radio-campo: 10px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--crema);
+  color: var(--carbon);
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--fuente-titulos);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.6em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(1.9rem, 2.5vw + 1.2rem, 2.75rem);
+}
+
+h2 {
+  font-size: clamp(1.35rem, 1vw + 1.1rem, 1.75rem);
+}
+
+h3 {
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0 0 1em;
+  max-width: 68ch;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.2em;
+}
+
+code {
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  background: var(--arena-suave);
+  padding: 0.1em 0.35em;
+  border-radius: 5px;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 3px solid var(--arena-fuerte);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- Utilidades ---------- */
+
+.container {
+  width: 100%;
+  max-width: 1180px;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+.page-pad {
+  padding-block: clamp(1.5rem, 4vw, 3rem) clamp(3rem, 8vw, 6rem);
+}
+
+.muted {
+  color: var(--tinta-suave);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  background: var(--carbon);
+  color: var(--crema);
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.notice {
+  background: var(--papel);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio-caja);
+  padding: 1.25rem 1.5rem;
+  max-width: none;
+}
+
+/* ---------- Logo ---------- */
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+}
+
+.logo__mark {
+  height: 2.5rem;
+  width: auto;
+}
+
+.logo__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.logo__name {
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+}
+
+.logo__sub {
+  font-family: var(--fuente-titulos);
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  margin-top: 0.2rem;
+}
+
+.logo--claro {
+  color: var(--crema);
+}
+
+/* ---------- Botones ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  font-family: var(--fuente-titulos);
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background-color 0.15s,
+    color 0.15s,
+    border-color 0.15s;
+}
+
+.btn svg {
+  font-size: 1.2em;
+  flex: none;
+}
+
+.btn--dark {
+  background: var(--carbon);
+  color: var(--crema);
+}
+
+.btn--dark:hover {
+  background: #000;
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--carbon);
+  color: var(--carbon);
+}
+
+.btn--ghost:hover {
+  background: var(--carbon);
+  color: var(--crema);
+}
+
+.btn--wa {
+  background: var(--whatsapp);
+  color: var(--carbon);
+}
+
+.btn--wa:hover {
+  background: #1fbd5a;
+}
+
+.btn--danger {
+  background: transparent;
+  border-color: currentColor;
+  color: var(--error);
+}
+
+.btn--danger:hover {
+  background: var(--error);
+  border-color: var(--error);
+  color: #fff;
+}
+
+.btn--small {
+  padding: 0.45rem 1rem;
+  font-size: 0.85rem;
+}
+
+.btn--wide {
+  width: 100%;
+}
+
+.btn:disabled,
+.btn.is-disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ---------- Chips (filtros y opciones) ---------- */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  padding: 0.4rem 1rem;
+  border: 1.5px solid var(--linea);
+  border-radius: 999px;
+  background: transparent;
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s;
+}
+
+.chip:hover {
+  border-color: var(--carbon);
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--carbon);
+  border-color: var(--carbon);
+  color: var(--crema);
+}
+
+/* ---------- Foto pendiente (capas de impresión) ---------- */
+
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 7px,
+      rgba(31, 31, 31, 0.05) 7px 8px
+    ),
+    var(--arena-suave);
+}
+
+.photo-placeholder img {
+  width: 28%;
+  opacity: 0.28;
+}
+
+/* ---------- Aviso de configuración ---------- */
+
+.setup-notice {
+  max-width: 34rem;
+  margin: 12vh auto;
+  padding: 0 1.5rem;
+}
+
+.setup-notice img {
+  margin-bottom: 1.5rem;
+}
+
+.setup-notice li {
+  margin-bottom: 0.5rem;
+}
