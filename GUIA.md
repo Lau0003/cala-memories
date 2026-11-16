@@ -7,7 +7,7 @@ cambiar un poco con el tiempo; si algo no coincide, busca el equivalente o preg�
 - Parte 2. Crear la base de datos en Supabase
 - Parte 3. Ver el proyecto en tu computador
 - Parte 4. Subirlo a GitHub
-- Parte 5. Publicarlo en Cloudflare
+- Parte 5. Publicarlo en Cloudflare (versión detallada y solución de errores en `DESPLIEGUE-CLOUDFLARE.md`)
 - Parte 6. Conectar tu dominio
 - Parte 7. Uso diario y mantenimiento
 
@@ -248,19 +248,51 @@ cala-memories/
    ├─ layouts/              marco de la tienda y marco del panel
    ├─ pages/
    │  ├─ tienda/            inicio, producto, políticas
-   │  └─ admin/             login, resumen, productos, categorías, ajustes
-   └─ styles/               base.css, tienda.css, admin.css
+   │  └─ admin/             login, resumen, órdenes, tareas, productos, categorías,
+   │                        cotizador, inventario, lanzamientos, contenido, ajustes
+   └─ styles/               tailwind.css, base.css, tienda.css, admin.css,
+                            admin-secciones.css, motion.css
 ```
 
-## Qué incluye esta fase y qué sigue
+## Qué incluye
 
-Fase 1 (esta entrega): tienda pública, página de producto con datos de pago y WhatsApp,
-políticas, login, productos con fotos, opciones, combos y pasos de producción, categorías
-y ajustes.
+**Tienda:** inicio con catálogo y filtros, página de producto con datos de pago y WhatsApp,
+políticas y botón flotante de WhatsApp (aparece cuando guardas el número en Ajustes).
 
-- Fase 2: órdenes (cliente, dirección, fotos de referencia, pago, avance por pasos) y tareas.
-- Fase 3: cotizador e inventario de insumos.
-- Fase 4: lanzamientos y calendario de contenido.
+**Panel:**
 
-Las tablas de las fases 2 a 4 ya quedan creadas, así que no habrá que tocar la base de
-datos de nuevo salvo ajustes menores.
+- **Resumen:** órdenes en curso, órdenes sin pago y tus tareas.
+- **Órdenes:** se crean desde un producto o 100 % personalizadas. Piden dirección, correo o
+  foto de referencia según lo configurado en el producto. Tienen estado, pago, casilla
+  "desarrollar sin pago anticipado", pasos de producción para marcar, material usado
+  (descuenta del inventario) e historial con notas.
+- **Tareas:** pendientes por responsable, con fecha límite.
+- **Productos y categorías.**
+- **Cotizador:** material, merma, energía, desgaste, mano de obra, embalaje y otros costos.
+  Sugiere precios al 30, 35 y 40 % de ganancia; tú escribes el precio final y puedes
+  aplicarlo al producto.
+- **Inventario:** insumos, compras (calcula el costo promedio) y ajustes de cantidad.
+- **Lanzamientos:** tarjetas con fecha, estado y enlaces al material audiovisual.
+- **Contenido:** tablero de ideas, pendientes, programados y publicados.
+- **Ajustes:** WhatsApp, datos de pago, tiempos, textos, políticas y redes.
+
+## Orden recomendado para empezar a cotizar
+
+1. **Inventario:** crea tus filamentos y registra la compra de cada rollo (ej. 1000 g por
+   lo que te costó).
+2. **Cotizador > Parámetros de costo:** valor de tu hora, tarifa del kWh (sale en la
+   factura de energía), consumo de la impresora en vatios, desgaste, merma y embalaje.
+3. **Cotizador:** agrega los gramos de cada material, las horas de impresión y tus horas
+   de trabajo. Elige un precio sugerido o escribe el tuyo.
+
+## Tailwind y transiciones
+
+Tailwind v4 está instalado y configurado en `src/styles/tailwind.css`, con los colores de
+la marca como clases (`bg-carbon`, `text-crema`, `border-arena`, `font-titulos`). Puedes
+usar clases de Tailwind en cualquier componente. Se cargó sin su reinicio de estilos para
+no alterar el diseño existente.
+
+Las transiciones de la página (cambio de página, apertura de paneles, aparición de
+productos, botones) están en `src/styles/motion.css`.
+
+Para desplegar o resolver errores de Cloudflare, sigue `DESPLIEGUE-CLOUDFLARE.md`.

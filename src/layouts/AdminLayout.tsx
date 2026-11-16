@@ -1,24 +1,25 @@
-import { useState } from 'react'
-import { Link, NavLink, Navigate, Outlet } from 'react-router-dom'
+import { Fragment, useState } from 'react'
+import { Link, NavLink, Navigate, Outlet, useLocation } from 'react-router-dom'
 import Logo from '../components/Logo'
 import { useAuth } from '../lib/auth'
 
-const NAV: { to: string; label: string; end?: boolean; soon?: boolean }[] = [
+const NAV: { to: string; label: string; end?: boolean; group?: string }[] = [
   { to: '/admin', label: 'Resumen', end: true },
-  { to: '/admin/productos', label: 'Productos' },
+  { to: '/admin/ordenes', label: 'Órdenes', group: 'Día a día' },
+  { to: '/admin/tareas', label: 'Tareas' },
+  { to: '/admin/productos', label: 'Productos', group: 'Catálogo' },
   { to: '/admin/categorias', label: 'Categorías' },
-  { to: '/admin/ordenes', label: 'Órdenes', soon: true },
-  { to: '/admin/tareas', label: 'Tareas', soon: true },
-  { to: '/admin/cotizador', label: 'Cotizador', soon: true },
-  { to: '/admin/inventario', label: 'Inventario', soon: true },
-  { to: '/admin/lanzamientos', label: 'Lanzamientos', soon: true },
-  { to: '/admin/contenido', label: 'Contenido', soon: true },
-  { to: '/admin/ajustes', label: 'Ajustes' },
+  { to: '/admin/cotizador', label: 'Cotizador', group: 'Costos' },
+  { to: '/admin/inventario', label: 'Inventario' },
+  { to: '/admin/lanzamientos', label: 'Lanzamientos', group: 'Marketing' },
+  { to: '/admin/contenido', label: 'Contenido' },
+  { to: '/admin/ajustes', label: 'Ajustes', group: 'Tienda' },
 ]
 
 export default function AdminLayout() {
   const { loading, userId, admin, signOut } = useAuth()
   const [menuOpen, setMenuOpen] = useState(false)
+  const location = useLocation()
 
   if (loading) {
     return (
@@ -71,10 +72,12 @@ export default function AdminLayout() {
           aria-label="Panel"
         >
           {NAV.map((item) => (
-            <NavLink key={item.to} to={item.to} end={item.end} onClick={() => setMenuOpen(false)}>
-              {item.label}
-              {item.soon && <span className="admin-nav__soon">Pronto</span>}
-            </NavLink>
+            <Fragment key={item.to}>
+              {item.group && <span className="admin-nav__group">{item.group}</span>}
+              <NavLink to={item.to} end={item.end} onClick={() => setMenuOpen(false)}>
+                {item.label}
+              </NavLink>
+            </Fragment>
           ))}
           <div className="admin-nav__foot">
             <a href="/" target="_blank" rel="noopener noreferrer">
@@ -88,7 +91,9 @@ export default function AdminLayout() {
       </aside>
 
       <main className="admin-main">
-        <Outlet />
+        <div key={location.pathname} className="page-enter">
+          <Outlet />
+        </div>
       </main>
     </div>
   )

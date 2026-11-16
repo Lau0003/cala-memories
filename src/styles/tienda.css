@@ -86,11 +86,6 @@
   width: min(100%, 26rem);
 }
 
-.hero__logo {
-  width: 100%;
-  height: auto;
-}
-
 @media (max-width: 760px) {
   .hero__inner {
     grid-template-columns: 1fr;
@@ -99,6 +94,47 @@
     order: -1;
     width: min(62%, 15rem);
     justify-self: start;
+  }
+}
+
+/* Cubo que se imprime capa por capa */
+
+.printed-cube {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.printed-cube__outline path {
+  fill: none;
+  stroke: var(--carbon);
+  stroke-width: 17;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.printed-cube__layers polyline {
+  fill: none;
+  stroke: var(--arena);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: capa 0.4s ease-out both;
+}
+
+.printed-cube__top {
+  fill: var(--arena-suave);
+  animation: capa 0.5s ease-out 1.5s both;
+}
+
+@keyframes capa {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 

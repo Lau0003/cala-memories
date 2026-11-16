@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import PrintedCube from '../../components/PrintedCube'
 import ProductCard from '../../components/ProductCard'
 import { supabase } from '../../lib/supabase'
 import { useSettings } from '../../lib/settings'
@@ -76,11 +77,7 @@ export default function Home() {
             </div>
           </div>
           <div className="hero__art">
-            <img
-              className="hero__logo"
-              src="/brand/isotipo-oscuro.png"
-              alt="CaLa memories"
-            />
+            <PrintedCube />
           </div>
         </div>
       </section>

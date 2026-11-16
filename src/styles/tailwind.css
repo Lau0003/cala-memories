@@ -1,0 +1,30 @@
+/* =====================================================================
+   Tailwind CSS v4
+   Se cargan el tema y las utilidades, sin el "preflight" (el reinicio de
+   estilos de Tailwind), para que no altere el diseño que ya existe.
+
+   Con esto puedes usar clases de Tailwind en cualquier componente:
+     className="transition duration-200 hover:-translate-y-0.5"
+     className="bg-carbon text-crema rounded-full px-4 py-2"
+   ===================================================================== */
+
+@layer theme, base, components, utilities;
+
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+/* Colores y tipografías de la marca como clases de Tailwind:
+   bg-carbon, text-crema, border-arena, font-titulos, etc. */
+@theme {
+  --color-carbon: #1f1f1f;
+  --color-crema: #f5f1e9;
+  --color-arena: #c9b8a7;
+  --color-papel: #fbf9f5;
+  --color-arena-suave: #e6ddd2;
+  --color-arena-fuerte: #9c8672;
+  --color-tinta-suave: #665c53;
+  --color-whatsapp: #25d366;
+
+  --font-titulos: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+  --font-texto: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+}

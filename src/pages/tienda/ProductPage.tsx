@@ -190,7 +190,7 @@ export default function ProductPage() {
               </button>
 
               {showPayment && (
-                <div className="pay" id="datos-pago">
+                <div className="pay reveal" id="datos-pago">
                   <ol className="pay__steps">
                     <li>
                       <h2>Transfiere {formatCOP(product.price)}</h2>

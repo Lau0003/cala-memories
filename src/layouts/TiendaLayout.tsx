@@ -1,5 +1,5 @@
 import { FaFacebookF, FaInstagram, FaTiktok, FaWhatsapp } from 'react-icons/fa6'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, useLocation } from 'react-router-dom'
 import Logo from '../components/Logo'
 import WhatsAppButton from '../components/WhatsAppButton'
 import { useSettings } from '../lib/settings'
@@ -8,6 +8,7 @@ import { productionText, whatsappLink } from '../lib/format'
 export default function TiendaLayout() {
   const { settings } = useSettings()
   const hasWhatsApp = Boolean(settings.whatsapp_number)
+  const location = useLocation()
 
   return (
     <div className="tienda">
@@ -40,7 +41,9 @@ export default function TiendaLayout() {
       </header>
 
       <main id="contenido">
-        <Outlet />
+        <div key={location.pathname} className="page-enter">
+          <Outlet />
+        </div>
       </main>
 
       <footer className="site-footer">

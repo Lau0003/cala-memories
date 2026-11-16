@@ -14,7 +14,14 @@ import Products from './pages/admin/Products'
 import ProductForm from './pages/admin/ProductForm'
 import Categories from './pages/admin/Categories'
 import Settings from './pages/admin/Settings'
-import ComingSoon from './pages/admin/ComingSoon'
+import Orders from './pages/admin/Orders'
+import OrderForm from './pages/admin/OrderForm'
+import OrderDetail from './pages/admin/OrderDetail'
+import Tasks from './pages/admin/Tasks'
+import Quoter from './pages/admin/Quoter'
+import Inventory from './pages/admin/Inventory'
+import Launches from './pages/admin/Launches'
+import Content from './pages/admin/Content'
 import SetupNotice from './components/SetupNotice'
 
 export default function App() {
@@ -40,12 +47,15 @@ export default function App() {
               <Route path="productos/:id" element={<ProductForm />} />
               <Route path="categorias" element={<Categories />} />
               <Route path="ajustes" element={<Settings />} />
-              <Route path="ordenes" element={<ComingSoon section="ordenes" />} />
-              <Route path="tareas" element={<ComingSoon section="tareas" />} />
-              <Route path="cotizador" element={<ComingSoon section="cotizador" />} />
-              <Route path="inventario" element={<ComingSoon section="inventario" />} />
-              <Route path="lanzamientos" element={<ComingSoon section="lanzamientos" />} />
-              <Route path="contenido" element={<ComingSoon section="contenido" />} />
+              <Route path="ordenes" element={<Orders />} />
+              <Route path="ordenes/nueva" element={<OrderForm />} />
+              <Route path="ordenes/:id" element={<OrderDetail />} />
+              <Route path="ordenes/:id/editar" element={<OrderForm />} />
+              <Route path="tareas" element={<Tasks />} />
+              <Route path="cotizador" element={<Quoter />} />
+              <Route path="inventario" element={<Inventory />} />
+              <Route path="lanzamientos" element={<Launches />} />
+              <Route path="contenido" element={<Content />} />
             </Route>
           </Routes>
         </AuthProvider>
